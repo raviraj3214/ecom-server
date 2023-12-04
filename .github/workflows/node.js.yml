@@ -24,4 +24,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
+    - name: Build if present
+    - run: npm run build ||true --if-present
     - run: sudo pm2 restart ecomserver
