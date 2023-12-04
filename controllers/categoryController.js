@@ -32,7 +32,7 @@ export const createCategoryController = async (req, res) => {
   }
 };
 
-//update category
+//update categorydfghm
 export const updateCategoryController = async (req, res) => {
   try {
     const { name } = req.body;
