@@ -24,6 +24,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm install -g pnpm
-    - run: pnpm install
     - run: sudo pm2 restart ecomserver
