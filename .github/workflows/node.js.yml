@@ -29,13 +29,13 @@ jobs:
 
     - name: SETTING UP ENVIRONMENT VARIABLE
       env:
-        MONGO_URL: ${{ secrets.MONGO_URL }}  
-        JWT_SECRET: ${{secrets.JWT_SECRET}}
-        PORT: ${{secrets.PORT}}
-        DEV_MODE: ${{secrets.DEV_MODE}}
-        BRAINTREE_PUBLIC_KEY: ${{secrets.BRAINTREE_PUBLIC_KEY}}
-        BRAINTREE_PRIVATE_KEY: ${{secrets.BRAINTREE_PRIVATE_KEY}}
-        BRAINTREE_MERCHANT_ID: ${{secrets.BRAINTREE_MERCHANT_ID}}
+        MONGO_URL: ${{ vars.MONGO_URL }}  
+        JWT_SECRET: ${{vars.JWT_SECRET}}
+        PORT: ${{vars.PORT}}
+        DEV_MODE: ${{vars.DEV_MODE}}
+        BRAINTREE_PUBLIC_KEY: ${{vars.BRAINTREE_PUBLIC_KEY}}
+        BRAINTREE_PRIVATE_KEY: ${{vars.BRAINTREE_PRIVATE_KEY}}
+        BRAINTREE_MERCHANT_ID: ${{vars.BRAINTREE_MERCHANT_ID}}
       run: ''
 
     - name: Restart server
