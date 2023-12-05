@@ -23,7 +23,7 @@ jobs:
         cache: 'npm'
     - name: 'Create env file'
       run: |
-        echo "$ { { secrets.ENV_FILE }}" > .env
+        echo "$ { { secrets.env_file }}" > .env
 
 
     - run: npm ci
