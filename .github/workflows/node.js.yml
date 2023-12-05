@@ -4,6 +4,15 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  PORT: ${{secrets.PORT}}
+  MONGO_URL: ${{secrets.MONGO_URL}}
+  JWT_SECRET: ${{secrets.JWT_SECRET}}
+  DEV_MODE: ${{secrets.DEV_MODE}}
+  BRAINTREE_PUBLIC_KEY: ${{secrets.BRAINTREE_PUBLIC_KEY}}
+  BRAINTREE_PRIVATE_KEY: ${{secrets.BRAINTREE_PRIVATE_KEY}}
+  BRAINTREE_MERCHANT_ID: ${{secrets.BRAINTREE_MERCHANT_ID}}
+
 jobs:
   build:
     runs-on: self-hosted
@@ -28,6 +37,7 @@ jobs:
       run: npm run build || true --if-present
 
     - name: Restart PM2
-      run: |
-        sudo $(which npm) install -g pm2
-        sudo $(which pm2) restart ecomserver
+      uses: pm2/github-action@master
+      with:
+       action: restart
+       process: ecomserver
