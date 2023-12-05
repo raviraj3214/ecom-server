@@ -35,9 +35,3 @@ jobs:
 
     - name: Build if present
       run: npm run build || true --if-present
-
-    - name: Restart PM2
-      uses: pm2/github-action@master
-      with:
-       action: restart
-       process: ecomserver
