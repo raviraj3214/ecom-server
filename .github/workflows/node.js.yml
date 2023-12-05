@@ -38,7 +38,7 @@ jobs:
         BRAINTREE_MERCHANT_ID: ${{vars.BRAINTREE_MERCHANT_ID}}
       run: ''
 
-    - name: Restart server
-      run: pm2 restart ecomserver
+    # - name: Restart server
+    #   run: pm2 restart ecomserver
     
     
