@@ -36,7 +36,7 @@ jobs:
         BRAINTREE_PUBLIC_KEY: ${{vars.BRAINTREE_PUBLIC_KEY}}
         BRAINTREE_PRIVATE_KEY: ${{vars.BRAINTREE_PRIVATE_KEY}}
         BRAINTREE_MERCHANT_ID: ${{vars.BRAINTREE_MERCHANT_ID}}
-      run: pm2 restart ecomserver
+      run: pm2 restart server.js
 
     # - name: Restart server
     #   run: pm2 restart ecomserver
