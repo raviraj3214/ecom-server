@@ -27,17 +27,6 @@ jobs:
     - name: 'Install Depepndencies'
       run: pnpm install
 
-    - name: SETTING UP ENVIRONMENT VARIABLE
-      env:
-        MONGO_URL: ${{ vars.MONGO_URL }}  
-        JWT_SECRET: ${{vars.JWT_SECRET}}
-        PORT: ${{vars.PORT}}
-        DEV_MODE: ${{vars.DEV_MODE}}
-        BRAINTREE_PUBLIC_KEY: ${{vars.BRAINTREE_PUBLIC_KEY}}
-        BRAINTREE_PRIVATE_KEY: ${{vars.BRAINTREE_PRIVATE_KEY}}
-        BRAINTREE_MERCHANT_ID: ${{vars.BRAINTREE_MERCHANT_ID}}
-      run: pm2 start server.js
-
     # - name: Restart server
     #   run: pwd
     
