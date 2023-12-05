@@ -7,15 +7,16 @@ import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
-const path = require('path');
+// const path = require('path');
 // import path from "path";
 // import { fileURLToPath } from 'url';
 //configure env
 // Specify the absolute path to the .env file
-const envPath = path.resolve('/root/ecom-server/custom/.env');
+// const envPath = path.resolve('/root/ecom-server/custom/.env');
 
 // Load the environment variables from the .env file
-dotenv.config({ path: envPath });
+// dotenv.config({ path: envPath });
+dotenv.config();
 
 //databse config
 connectDB();
