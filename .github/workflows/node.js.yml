@@ -4,15 +4,6 @@ on:
   push:
     branches: [ "main" ]
 
-env:
-  PORT: ${{secrets.PORT}}
-  MONGO_URL: ${{secrets.MONGO_URL}}
-  JWT_SECRET: ${{secrets.JWT_SECRET}}
-  DEV_MODE: ${{secrets.DEV_MODE}}
-  BRAINTREE_PUBLIC_KEY: ${{secrets.BRAINTREE_PUBLIC_KEY}}
-  BRAINTREE_PRIVATE_KEY: ${{secrets.BRAINTREE_PRIVATE_KEY}}
-  BRAINTREE_MERCHANT_ID: ${{secrets.BRAINTREE_MERCHANT_ID}}
-
 jobs:
   build:
     runs-on: self-hosted
@@ -30,5 +21,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Create .env file
+      run: |
+        echo "PORT=${{ secrets.PORT }}" >> .env
+        echo "MONGO_URL=${{ secrets.MONGO_URL }}" >> .env
+        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+        echo "DEV_MODE=${{ secrets.DEV_MODE }}" >> .env
+        echo "BRAINTREE_PUBLIC_KEY=${{ secrets.BRAINTREE_PUBLIC_KEY }}" >> .env
+        echo "BRAINTREE_PRIVATE_KEY=${{ secrets.BRAINTREE_PRIVATE_KEY }}" >> .env
+        echo "BRAINTREE_MERCHANT_ID=${{ secrets.BRAINTREE_MERCHANT_ID }}" >> .env
 
     - run: npm ci
