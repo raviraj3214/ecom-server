@@ -21,9 +21,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: 'Create env file'
-      run: |
-        echo "${ { secrets.env_file }}" > .env
+    # - name: 'Create env file'
+    #   run: |
+    #     echo "${ { secrets.env_file }}" > .env
     
     - name: 'Install Depepndencies'
       run: pnpm install
