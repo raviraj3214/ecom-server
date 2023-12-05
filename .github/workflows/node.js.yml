@@ -12,7 +12,6 @@ jobs:
       matrix:
         node-version: [18.x] # Update to the desired Node.js version
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
 
