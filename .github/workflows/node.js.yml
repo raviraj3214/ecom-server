@@ -23,9 +23,9 @@ jobs:
         cache: 'npm'
     - name: 'Create env file'
       run: |
-        echo "$ { { secrets.env_file }}" > .env
+        echo "${ { secrets.env_file }}" > .env
     
-    - name: 'install depepndencies'
-    - run: pnpm install
+    - name: 'Install Depepndencies'
+      run: pnpm install
     
     
