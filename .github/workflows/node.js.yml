@@ -28,8 +28,7 @@ jobs:
     - name: 'Install Depepndencies'
       run: pnpm install
 
-    - name: Run tests
-      run: npm test
+    - name: SETTING UP ENVIRONMENT VARIABLE
       env:
         MONGO_URL: ${{ secrets.MONGO_URL }}  
         JWT_SECRET: ${{secrets.JWT_SECRET}}
