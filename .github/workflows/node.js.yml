@@ -21,14 +21,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Create .env file
+    - name: 'Create env file'
       run: |
-        echo "PORT=${{ secrets.PORT }}" >> .env
-        echo "MONGO_URL=${{ secrets.MONGO_URL }}" >> .env
-        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-        echo "DEV_MODE=${{ secrets.DEV_MODE }}" >> .env
-        echo "BRAINTREE_PUBLIC_KEY=${{ secrets.BRAINTREE_PUBLIC_KEY }}" >> .env
-        echo "BRAINTREE_PRIVATE_KEY=${{ secrets.BRAINTREE_PRIVATE_KEY }}" >> .env
-        echo "BRAINTREE_MERCHANT_ID=${{ secrets.BRAINTREE_MERCHANT_ID }}" >> .env
+        echo "$ { { secrets.ENV_FILE }}" > .env
+
 
     - run: npm ci
