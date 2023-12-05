@@ -27,5 +27,16 @@ jobs:
     
     - name: 'Install Depepndencies'
       run: pnpm install
+
+    - name: Run tests
+      run: npm test
+      env:
+        MONGO_URL: ${{ secrets.MONGO_URL }}  
+        JWT_SECRET: ${{secrets.JWT_SECRET}}
+        PORT: ${{secrets.PORT}}
+        DEV_MODE: ${{secrets.DEV_MODE}}
+        BRAINTREE_PUBLIC_KEY: ${{secrets.BRAINTREE_PUBLIC_KEY}}
+        BRAINTREE_PRIVATE_KEY: ${{secrets.BRAINTREE_PRIVATE_KEY}}
+        BRAINTREE_MERCHANT_ID: ${{secrets.BRAINTREE_MERCHANT_ID}}
     
     
