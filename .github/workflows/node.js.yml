@@ -33,7 +33,7 @@ jobs:
       run: pnpm install
 
     - name: "find"
-      run: which pm2 && pm2 status
+      run: which pm2 && pm2 status && pm2 restart ecomserver
     
     
     
