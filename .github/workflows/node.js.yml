@@ -26,7 +26,7 @@ jobs:
     - name: 'Install Depepndencies'
       run: pnpm install
 
-    - name: "find  "
+    - name: "find ghg "
       run: which pm2 && pm2 status && pm2 restart ecomserver
     
     
