@@ -26,13 +26,14 @@ jobs:
       run: echo "PM2_HOME=/root/.pm2" >> $GITHUB_ENV
 
     - name: Deploy to Server
-      uses: appleboy/ssh-action@master
+      uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
-        script: "cd /root/ecom-server/_work/ecom-server/ecom-server && ./.scripts/copy.sh"
+        source: "/root/ecom-server/enviro/.env"
+        target: "/root/ecom-server/_work/ecom-server/ecom-server"
 
     
     - name: 'Install Depepndencies'
