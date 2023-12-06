@@ -26,6 +26,9 @@ jobs:
     
     - name: 'Install Depepndencies'
       run: pnpm install
+
+    - name: "find"
+      run: which pm2 && pm2 status
     
     
     
