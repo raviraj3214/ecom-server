@@ -26,8 +26,8 @@ jobs:
     
     - name: 'Install Depepndencies'
       run: pnpm install
-
-    # - name: Restart server
-    #   run: pwd
+     
+    - name: Restart server
+      run: pm2 restart 0
     
     
