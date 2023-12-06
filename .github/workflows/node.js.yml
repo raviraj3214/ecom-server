@@ -22,20 +22,11 @@ jobs:
     # - name: 'Create env file'
     #   run: |
     #     echo "${ { secrets.env_file }}" > .env
+    - name: copy 
+      run: ln -s /root/ecom-server/enviro/.env /root/ecom-server/_work/ecom-server/ecom-server
     - name: Set PM2_HOME
       run: echo "PM2_HOME=/root/.pm2" >> $GITHUB_ENV
 
-    - name: Deploy to Server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
-        key: ${{ secrets.SSHKEY }}
-        source: "/root/ecom-server/enviro/.env"
-        target: "/root/ecom-server/_work/ecom-server/ecom-server"
-
-    
     - name: 'Install Depepndencies'
       run: pnpm install
 
