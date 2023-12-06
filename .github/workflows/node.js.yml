@@ -23,7 +23,7 @@ jobs:
     #   run: |
     #     echo "${ { secrets.env_file }}" > .env
     - name: Set PM2_HOME
-      run: echo "PM2_HOME=$HOME/.pm2" >> $GITHUB_ENV
+      run: echo "PM2_HOME=/root/.pm2" >> $GITHUB_ENV
 
     
     - name: 'Install Depepndencies'
