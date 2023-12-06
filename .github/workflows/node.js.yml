@@ -27,7 +27,7 @@ jobs:
       run: pnpm install
 
     - name: "find ghg "
-      run: which pm2 && pm2 status && pm2 restart ecomserver
+      run: pwd
     
     
     
