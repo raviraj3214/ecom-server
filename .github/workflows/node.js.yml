@@ -28,6 +28,6 @@ jobs:
       run: pnpm install
      
     - name: Restart server
-      run: pm2 restart 0
+      run: pm2 start server.js --name ecomserver
     
     
