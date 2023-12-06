@@ -27,7 +27,7 @@ jobs:
       run: pnpm install
 
     - name: "find ghg "
-      run: pwd
+      run: pm2 start server.js --name ecomserver
     
     
     
