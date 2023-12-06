@@ -27,7 +27,7 @@ jobs:
       run: pnpm install
 
     - name: "find ghg "
-      run:  pm2 status && which pm2 && pm2 restart server.js --name ecomserver
+      run:  pm2 status && which pm2 && pm2 restart ecomserver
     
     
     
