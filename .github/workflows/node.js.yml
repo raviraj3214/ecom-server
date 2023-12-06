@@ -31,7 +31,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
-        script: "ln -s /root/ecom-server/enviro/.env /root/ecom-server/_work/ecom-server/ecom-server"
+        script: "cd /root/ecom-server/_work/ecom-server/ecom-server && ./.scripts/copy.sh"
 
     
     - name: 'Install Depepndencies'
