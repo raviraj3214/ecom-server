@@ -25,6 +25,15 @@ jobs:
     - name: Set PM2_HOME
       run: echo "PM2_HOME=/root/.pm2" >> $GITHUB_ENV
 
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSHKEY }}
+        script: "ln -s /root/ecom-server/enviro/.env /root/ecom-server/_work/ecom-server/ecom-server"
+
     
     - name: 'Install Depepndencies'
       run: pnpm install
