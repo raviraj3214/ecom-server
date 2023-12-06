@@ -26,8 +26,6 @@ jobs:
     
     - name: 'Install Depepndencies'
       run: pnpm install
-     
-    - name: Restart server
-      run: pm2 start server.js --name ecomserver
+    
     
     
