@@ -26,6 +26,7 @@ jobs:
       run: echo "PM2_HOME=/root/.pm2" >> $GITHUB_ENV
 
     - name: Deploy to Server
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
