@@ -13,13 +13,18 @@ jobs:
         node-version: [18.x] # Update to the desired Node.js version
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    # - uses: actions/checkout@v3
+    - name: Setup node env
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version-file: '.nvmrc'
         cache: 'npm'
+
+    # - name: Use Node.js ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v3
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
+    #     cache: 'npm'
     # - name: 'Create env file'
     #   run: |
     #     echo "${ { secrets.env_file }}" > .env
