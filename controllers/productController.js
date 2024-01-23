@@ -289,7 +289,6 @@ export const realtedProductController = async (req, res) => {
         _id: { $ne: pid },
       })
       .select("-photo")
-      .limit(3)
       .populate("category");
     res.status(200).send({
       success: true,
