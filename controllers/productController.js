@@ -68,7 +68,6 @@ export const getProductController = async (req, res) => {
       .find({})
       .populate("category")
       .select("-photo")
-      .limit(12)
       .sort({ createdAt: -1 });
     res.status(200).send({
       success: true,
@@ -235,7 +234,7 @@ export const productCountController = async (req, res) => {
 // product list base on page
 export const productListController = async (req, res) => {
   try {
-    const perPage = 6;
+    const perPage = 12;
     const page = req.params.page ? req.params.page : 1;
     const products = await productModel
       .find({})
