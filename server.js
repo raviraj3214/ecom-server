@@ -26,7 +26,7 @@ connectDB();
 //rest object
 const app = express();
 // Define an array of allowed domains
-const allowedOrigins = ["https://raviecom.site", "https://www.raviecom.site"];
+const allowedOrigins = ["https://raviecom.site", "https://www.raviecom.site","http://192.168.1.20:8081","http://192.168.1.20"];
 
 //middelwares
 app.use(cors({
