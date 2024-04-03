@@ -26,14 +26,15 @@ connectDB();
 //rest object
 const app = express();
 // Define an array of allowed domains
-const allowedOrigins = ["https://raviecom.site", "https://www.raviecom.site","http://192.168.1.20:8081","http://192.168.1.20","http://192.168.1.17","http://192.168.1.17:8081"];
+// const allowedOrigins = ["https://raviecom.site", "https://www.raviecom.site","http://192.168.1.20:8081","http://192.168.1.20","http://192.168.1.17","http://192.168.1.17:8081"];
 
 //middelwares
-app.use(cors({
-  origin: allowedOrigins,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // enable set cookie
-}));
+// app.use(cors({
+//   origin: allowedOrigins,
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true, // enable set cookie
+// }));
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 // app.use(express.static(path.join(__dirname, './client/build')));
