@@ -5,7 +5,7 @@ import razorOrderModel from "../models/razorOrderModel.js";
 import Razorpay from "razorpay";
 import fs from "fs";
 import slugify from "slugify";
-import braintree, { Address } from "braintree";
+import braintree from "braintree";
 import dotenv from "dotenv";
 
 dotenv.config();

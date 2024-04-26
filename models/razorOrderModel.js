@@ -28,4 +28,4 @@ const razorOrderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Order", razorOrderSchema);
+export default mongoose.model("razorOrder", razorOrderSchema);
