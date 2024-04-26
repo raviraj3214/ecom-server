@@ -433,7 +433,7 @@ export const razorOrderController = async (req, res) => {
 
         order.save()
           .then(() => {
-            res.json({ success: true });
+            res.json({ success: true,id:razorOrder.id});
           })
           .catch((saveError) => {
             console.error('Error saving order:', saveError);
