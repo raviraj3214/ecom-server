@@ -1,13 +1,18 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import orderModel from "../models/orderModel.js";
-
+import razorOrderModel from "../models/razorOrderModel.js";
+import Razorpay from "razorpay";
 import fs from "fs";
 import slugify from "slugify";
-import braintree from "braintree";
+import braintree, { Address } from "braintree";
 import dotenv from "dotenv";
 
 dotenv.config();
+const razorpayInstance = new Razorpay({
+  key_id: process.env.RAZORPAY_ID_KEY,
+  key_secret: process.env.RAZORPAY_SECRET_KEY
+});
 
 //payment gateway
 var gateway = new braintree.BraintreeGateway({
@@ -356,6 +361,7 @@ export const brainTreePaymentController = async (req, res) => {
           submitForSettlement: true,
         },
       },
+    
       function (error, result) {
         if (result) {
           const order = new orderModel({
@@ -373,3 +379,75 @@ export const brainTreePaymentController = async (req, res) => {
     console.log(error);
   }
 };
+
+// export const createOrder = async(req,res)=>{
+//   try {
+//       const amount = req.body.amount
+//       const options = {
+//           amount: amount,
+//           currency: 'INR',
+//           receipt: 'rajravi12101999@gmail.com'
+//       }
+
+//       razorpayInstance.orders.create(options, 
+//           (err, order)=>{
+//               if(!err){
+//                 const order = new razorOrderModel({
+//                   products: cart,
+//                   amount: amount,
+//                   buyer: req.user._id,
+//                   address: req.address,
+//                   order_id: order.id,
+//                 }).save();
+//                 res.json({ success:true });
+//                   });
+//               }
+//               else{
+//                   res.status(400).send({success:false,msg:'Something went wrong!'});
+//               }
+//           }
+//       );
+
+//   } catch (error) {
+//       console.log(error.message);
+//   }
+// }
+export const razorOrderController = async (req, res) => {
+  try {
+    const amount = req.body.amount;
+    const options = {
+      amount: amount,
+      currency: 'INR',
+      receipt: 'rajravi12101999@gmail.com'
+    };
+
+    razorpayInstance.orders.create(options, (err, razorOrder) => {
+      if (!err) {
+        const order = new razorOrderModel({
+          products: cart, // Assuming `cart` is defined somewhere in your code
+          amount: amount,
+          buyer: req.user._id,
+          address: req.address,
+          order_id: razorOrder.id,
+        });
+
+        order.save()
+          .then(() => {
+            res.json({ success: true });
+          })
+          .catch((saveError) => {
+            console.error('Error saving order:', saveError);
+            res.status(500).json({ success: false, msg: 'Error saving order' });
+          });
+      } else {
+        console.error('Error creating order:', err);
+        res.status(400).json({ success: false, msg: 'Something went wrong!' });
+      }
+    });
+
+  } catch (error) {
+    console.error('Error in createOrder:', error);
+    res.status(500).json({ success: false, msg: 'Internal server error' });
+  }
+};
+

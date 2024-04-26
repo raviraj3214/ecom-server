@@ -11,6 +11,7 @@ import {
   productFiltersController,
   productListController,
   productPhotoController,
+  razorOrderController,
   realtedProductController,
   searchProductController,
   updateProductController,
@@ -73,5 +74,6 @@ router.get("/braintree/token", braintreeTokenController);
 
 //payments
 router.post("/braintree/payment", requireSignIn, brainTreePaymentController);
+router.post("/razorpay/payment", requireSignIn, razorOrderController);
 
 export default router;
