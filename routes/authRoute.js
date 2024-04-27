@@ -43,7 +43,7 @@ router.put("/profile", requireSignIn, updateProfileController);
 //orders
 router.get("/orders", requireSignIn, getOrdersController);
 //razorpay order
-router.get("/razorpay-orders", getRazOrdersController );
+router.post("/razorpay-orders",requireSignIn, getRazOrdersController );
 
 //all orders
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
