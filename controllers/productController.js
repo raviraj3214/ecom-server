@@ -414,19 +414,24 @@ export const brainTreePaymentController = async (req, res) => {
 // }
 export const razorOrderController = async (req, res) => {
   try {
+    const razorpayInstance = new Razorpay({
+      key_id: process.env.RAZORPAY_ID_KEY,
+      key_secret: process.env.RAZORPAY_SECRET_KEY
+    });
+    console.log(req)
     const amount = req.body.amount;
     const options = {
       amount: amount,
       currency: 'INR',
-      receipt: 'rajravi12101999@gmail.com'
+      receipt: 'ravi'
     };
 
     razorpayInstance.orders.create(options, (err, razorOrder) => {
       if (!err) {
         const order = new razorOrderModel({
-          products: cart, // Assuming `cart` is defined somewhere in your code
+          products: req.cart, // Assuming `cart` is defined somewhere in your code
           amount: amount,
-          buyer: req.user._id,
+          buyer: req.user_id,
           address: req.address,
           order_id: razorOrder.id,
         });
@@ -440,7 +445,7 @@ export const razorOrderController = async (req, res) => {
             res.status(500).json({ success: false, msg: 'Error saving order' });
           });
       } else {
-        console.error('Error creating order:', err);
+        console.error('Error creatinggg order:', err);
         res.status(400).json({ success: false, msg: 'Something went wrong!' });
       }
     });
