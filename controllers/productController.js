@@ -429,10 +429,10 @@ export const razorOrderController = async (req, res) => {
     razorpayInstance.orders.create(options, (err, razorOrder) => {
       if (!err) {
         const order = new razOrderModel({
-          products: req.cart, // Assuming `cart` is defined somewhere in your code
+          products: req.body.cart, // Assuming `cart` is defined somewhere in your code
           amount: amount,
-          buyer: req.user_id,
-          address: req.address,
+          buyer: req.body.user_id,
+          address: req.body.address,
           razorpay_signature:"", 
           razorpay_order_id: razorOrder.id, 
           razorpay_payment_id:"",
