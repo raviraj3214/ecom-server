@@ -3,6 +3,7 @@ import orderModel from "../models/orderModel.js";
 
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import razorOrderModel from "../models/razorOrderModel.js";
 
 export const registerController = async (req, res) => {
   try {
@@ -203,6 +204,22 @@ export const updateProfileController = async (req, res) => {
 export const getOrdersController = async (req, res) => {
   try {
     const orders = await orderModel
+      .find({ buyer: req.user._id })
+      .populate("products", "-photo")
+      .populate("buyer", "name");
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
+export const getRazOrdersController = async (req, res) => {
+  try {
+    const orders = await razorOrderModel
       .find({ buyer: req.user._id })
       .populate("products", "-photo")
       .populate("buyer", "name");

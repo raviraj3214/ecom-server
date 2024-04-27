@@ -433,12 +433,17 @@ export const razorOrderController = async (req, res) => {
           amount: amount,
           buyer: req.user_id,
           address: req.address,
-          order_id: razorOrder.id,
+          razorpay_signature:"", 
+          razorpay_order_id: razorOrder.id, 
+          razorpay_payment_id:"",
+          status: "not confirmed",
+
         });
 
         order.save()
           .then(() => {
             res.json({ success: true,id:razorOrder.id});
+      
           })
           .catch((saveError) => {
             console.error('Error saving order:', saveError);
@@ -455,4 +460,44 @@ export const razorOrderController = async (req, res) => {
     res.status(500).json({ success: false, msg: 'Internal server error' });
   }
 };
+
+// export const razorPaySucController = async (req, res) => {
+//   try {
+//     const {razorpay_signature, razorpay_order_id, razorpay_payment_id} = req
+//     const order = await razorOrderModel.findOne({razorpay_order_id});
+//     await razorOrderModel.findByIdAndUpdate(order._id,{
+//       razorpay_signature, razorpay_order_id, razorpay_payment_id,status: "success",
+//     })
+//     res.send({success:true});
+
+//   } catch (error) {
+//     console.error('Error in update status:', error);
+//     res.status(500).json({ success: false, msg: 'Internal server error' });
+//   }
+// };
+export const razorPaySucController = async (req, res) => {
+  try {
+    const { razorpay_signature, razorpay_order_id, razorpay_payment_id } = req.body; // Assuming data is sent in the request body
+    // Find the order by razorpay_order_id
+    const order = await razorOrderModel.findOne({ razorpay_order_id });
+    
+    if (!order) {
+      return res.status(404).json({ success: false, msg: 'Order not found' });
+    }
+
+    // Update the order status in the database
+    await razorOrderModel.findByIdAndUpdate(order._id, {
+      razorpay_signature,
+      razorpay_payment_id,
+      status: "success",
+    });
+
+    // Send success response
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error in update status:', error);
+    res.status(500).json({ success: false, msg: 'Internal server error' });
+  }
+};
+
 

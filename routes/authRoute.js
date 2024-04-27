@@ -8,6 +8,7 @@ import {
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
+  getRazOrdersController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -41,6 +42,8 @@ router.put("/profile", requireSignIn, updateProfileController);
 
 //orders
 router.get("/orders", requireSignIn, getOrdersController);
+//razorpay order
+router.get("/razorpay-orders", requireSignIn, getRazOrdersController );
 
 //all orders
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
