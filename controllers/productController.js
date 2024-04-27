@@ -419,7 +419,7 @@ export const razorOrderController = async (req, res) => {
       key_id: process.env.RAZORPAY_ID_KEY,
       key_secret: process.env.RAZORPAY_SECRET_KEY
     });
-    console.log(req)
+    console.log(products)
     const options = {
       amount: amount,
       currency: 'INR',
