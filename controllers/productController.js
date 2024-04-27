@@ -487,6 +487,11 @@ export const razorPaySucController = async (req, res) => {
 
     // Update the order status in the database
     await razOrderModel.findByIdAndUpdate(order._id, {
+      products: order.products,
+      amount: order.amount,
+      buyer: order.buyer,
+      address: order.address,
+      razorpay_order_id: order.razorpay_order_id,
       razorpay_signature,
       razorpay_payment_id,
       status: "success",
