@@ -414,7 +414,7 @@ export const brainTreePaymentController = async (req, res) => {
 // }
 export const razorOrderController = async (req, res) => {
   try {
-    const {cart,user_id,address,amount} = req.body;
+    const {products,user_id,address,amount} = req.body;
     const razorpayInstance = new Razorpay({
       key_id: process.env.RAZORPAY_ID_KEY,
       key_secret: process.env.RAZORPAY_SECRET_KEY
@@ -429,7 +429,7 @@ export const razorOrderController = async (req, res) => {
     razorpayInstance.orders.create(options, (err, razorOrder) => {
       if (!err) {
         const order = new razorOrderModel({
-          products: cart, // Assuming `cart` is defined somewhere in your code
+          products: products, // Assuming `cart` is defined somewhere in your code
           amount: amount,
           buyer: user_id,
           address: address,
