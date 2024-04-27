@@ -1,7 +1,7 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import orderModel from "../models/orderModel.js";
-import razorOrderModel from "../models/razorOrderModel.js";
+import razOrderModel from "../models/razOrderModel.js";
 import Razorpay from "razorpay";
 import fs from "fs";
 import slugify from "slugify";
@@ -428,7 +428,7 @@ export const razorOrderController = async (req, res) => {
 
     razorpayInstance.orders.create(options, (err, razorOrder) => {
       if (!err) {
-        const order = new razorOrderModel({
+        const order = new razOrderModel({
           products: req.cart, // Assuming `cart` is defined somewhere in your code
           amount: amount,
           buyer: req.user_id,
@@ -479,14 +479,14 @@ export const razorPaySucController = async (req, res) => {
   try {
     const { razorpay_signature, razorpay_order_id, razorpay_payment_id } = req.body; // Assuming data is sent in the request body
     // Find the order by razorpay_order_id
-    const order = await razorOrderModel.findOne({ razorpay_order_id });
+    const order = await razOrderModel.findOne({ razorpay_order_id });
     
     if (!order) {
       return res.status(404).json({ success: false, msg: 'Order not found' });
     }
 
     // Update the order status in the database
-    await razorOrderModel.findByIdAndUpdate(order._id, {
+    await razOrderModel.findByIdAndUpdate(order._id, {
       razorpay_signature,
       razorpay_payment_id,
       status: "success",
