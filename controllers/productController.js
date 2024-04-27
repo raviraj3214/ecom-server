@@ -433,11 +433,10 @@ export const razorOrderController = async (req, res) => {
           amount: amount,
           buyer: req.body.user_id,
           address: req.body.address,
-          razorpay_signature:"", 
-          razorpay_order_id: razorOrder.id, 
+          razorpay_order_id: razorOrder.id,
+          razorpay_signature:"",  
           razorpay_payment_id:"",
           status: "not confirmed",
-
         });
 
         order.save()
