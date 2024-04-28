@@ -224,6 +224,7 @@ export const getRazOrdersController = async (req, res) => {
       .populate("products")
       .populate("buyer", "name");
     res.json(orders);
+    console.log("images..............................",orders.products[0].image)
   } catch (error) {
     console.log(error);
     res.status(500).send({
