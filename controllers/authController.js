@@ -221,7 +221,7 @@ export const getRazOrdersController = async (req, res) => {
   try {
     const orders = await razorOrderModel
       .find({ buyer: req.body._id })
-      .populate("products", "-photo")
+      .populate("products")
       .populate("buyer", "name");
     res.json(orders);
   } catch (error) {
